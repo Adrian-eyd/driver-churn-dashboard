@@ -18,7 +18,7 @@ METRICS_PATH = BASE_DIR / "model_metrics.pkl"
 
 st.set_page_config(
     page_title="Driver Churn Analytics | Portfolio",
-    page_icon="◈",
+    page_icon="🚘",
     layout="wide",
     initial_sidebar_state="expanded",
 )
