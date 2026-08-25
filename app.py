@@ -125,7 +125,12 @@ def engineer_features(df):
     """Feature engineering aligned with the training notebook."""
     df = df.copy()
     df.columns = df.columns.str.lower().str.replace(" ", "_").str.strip()
-    df["driverid"] = df["driverid"].astype(str).str.strip()
+    df["driverid"] = (
+    pd.to_numeric(df["driverid"], errors="coerce")
+    .astype("Int64")
+    .astype(str)
+    .str.strip()
+)
     current_date = pd.Timestamp("2025-12-24")
     df["signupdate"] = pd.to_datetime(df["signupdate"], errors="coerce")
     df["lastactivedate"] = pd.to_datetime(df["lastactivedate"], errors="coerce").fillna(current_date)
