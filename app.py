@@ -125,11 +125,7 @@ def engineer_features(df):
     """Feature engineering aligned with the training notebook."""
     df = df.copy()
     df.columns = df.columns.str.lower().str.replace(" ", "_").str.strip()
-    # Driver ID must be text and contain at least 6 characters
-    df["driverid"] = df["driverid"].astype(str).str.strip()
-
-    # Remove rows with Driver IDs shorter than 6 characters
-    df = df[df["driverid"].str.len() >= 5].copy()
+   
     current_date = pd.Timestamp("2025-12-24")
     df["signupdate"] = pd.to_datetime(df["signupdate"], errors="coerce")
     df["lastactivedate"] = pd.to_datetime(df["lastactivedate"], errors="coerce").fillna(current_date)
