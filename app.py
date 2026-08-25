@@ -294,25 +294,17 @@ def main():
         st.plotly_chart(style_fig(fig), use_container_width=True)
 
     section("Priority driver list")
-search = st.text_input("Search by Driver ID",placeholder="e.g. 123456")
-roster = filtered.copy()
-# Make sure Driver ID is treated as text
-roster["driverid"] = roster["driverid"].astype(str)
-if search:
-    roster = roster[roster["driverid"].str.contains(search,case=False,na=False)
-    ]
-
-# Highest churn probability first
-roster = roster.sort_values("churn_probability",ascending=False)
-cols = ["driverid","city","inactivity_days","tripsperweek","engagementscore","cancellationrate","churn_probability","risk_category"]
-shown = roster[cols].head(100).copy()
-# Keep Driver ID as text
-shown["driverid"] = shown["driverid"].astype(str)
-# Format probability for display
-shown["churn_probability"] = shown["churn_probability"].map(lambda x: f"{x:.1%}")
-st.dataframe(shown.reset_index(drop=True),
-    use_container_width=True,height=430,hide_index=True
-)
+    search = st.text_input("Search by Driver ID", placeholder="e.g. DRV...")
+    roster = filtered.copy()
+    roster["driverid"] = roster["driverid"].astype(str)
+    if search:
+        roster = roster[roster["driverid"].str.contains(search, case=False, na=False)]
+    roster = roster.sort_values("churn_probability", ascending=False)
+    cols = ["driverid", "city", "inactivity_days", "tripsperweek", "engagementscore", "cancellationrate", "churn_probability", "risk_category"]
+    shown = roster[cols].head(100).copy()
+    shown["driverid"] = shown["driverid"].astype(str)
+    shown["churn_probability"] = shown["churn_probability"].map(lambda x: f"{x:.1%}")
+    st.dataframe(shown.reset_index(drop=True), use_container_width=True, height=430, hide_index=True)
     export = filtered.copy()
     st.download_button("Download scored driver results", export.to_csv(index=False), file_name="driver_churn_scored_results.csv", mime="text/csv")
 
