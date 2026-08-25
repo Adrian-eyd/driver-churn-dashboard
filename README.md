@@ -45,10 +45,10 @@ The model was trained using a train/test split and evaluated using several perfo
 
 | Metric    |Result |
 | --------- | ------|
-| Accuracy  | 75.9% |
-| Precision | 90.1% |
-| Recall    | 73.5% |
-| ROC-AUC   | 85.3% |
+| Accuracy  | 75.7% |
+| Precision | 89.7% |
+| Recall    | 73.6% |
+| ROC-AUC   | 84.9% |
 
 ## Key Insights
 
