@@ -129,7 +129,7 @@ def engineer_features(df):
     df["driverid"] = df["driverid"].astype(str).str.strip()
 
     # Remove rows with Driver IDs shorter than 6 characters
-    df = df[df["driverid"].str.len() >= 6].copy()
+    df = df[df["driverid"].str.len() >= 5].copy()
     current_date = pd.Timestamp("2025-12-24")
     df["signupdate"] = pd.to_datetime(df["signupdate"], errors="coerce")
     df["lastactivedate"] = pd.to_datetime(df["lastactivedate"], errors="coerce").fillna(current_date)
