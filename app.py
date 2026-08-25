@@ -302,7 +302,7 @@ def main():
     roster = roster.sort_values("churn_probability", ascending=False)
     cols = ["driverid", "city", "inactivity_days", "tripsperweek", "engagementscore", "cancellationrate", "churn_probability", "risk_category"]
     shown = roster[cols].head(100).copy()
-    shown["driverid"] = shown["driverid"].astype(str)
+    roster["driverid"] = pd.to_numeric(roster["driverid"], errors="coerce").astype("Int64").astype(str)
     shown["churn_probability"] = shown["churn_probability"].map(lambda x: f"{x:.1%}")
     st.dataframe(shown.reset_index(drop=True), use_container_width=True, height=430, hide_index=True)
     export = filtered.copy()
