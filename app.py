@@ -188,7 +188,7 @@ def main():
     st.markdown(
         """
         <div class="hero">
-            <div class="eyebrow">Portfolio Case Study · Customer Analytics</div>
+            <div class="eyebrow">Customer Analytics</div>
             <div class="title">Driver Churn Prediction</div>
             <div class="subtitle">
                 An end-to-end machine learning dashboard that identifies drivers at risk of churn,
