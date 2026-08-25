@@ -125,7 +125,7 @@ def engineer_features(df):
     """Feature engineering aligned with the training notebook."""
     df = df.copy()
     df.columns = df.columns.str.lower().str.replace(" ", "_").str.strip()
-   
+    df["driverid"] = df["driverid"].astype(str).str.strip()
     current_date = pd.Timestamp("2025-12-24")
     df["signupdate"] = pd.to_datetime(df["signupdate"], errors="coerce")
     df["lastactivedate"] = pd.to_datetime(df["lastactivedate"], errors="coerce").fillna(current_date)
@@ -297,7 +297,12 @@ def main():
     cols = ["driverid", "city", "inactivity_days", "tripsperweek", "engagementscore", "cancellationrate", "churn_probability", "risk_category"]
     shown = roster[cols].head(100).copy()
     shown["churn_probability"] = shown["churn_probability"].map(lambda x: f"{x:.1%}")
-    st.dataframe(shown, use_container_width=True, height=430)
+    st.dataframe(
+    shown.reset_index(drop=True),
+    use_container_width=True,
+    height=430,
+    hide_index=True
+)
 
     export = filtered.copy()
     st.download_button("Download scored driver results", export.to_csv(index=False), file_name="driver_churn_scored_results.csv", mime="text/csv")
