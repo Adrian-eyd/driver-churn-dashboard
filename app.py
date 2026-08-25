@@ -294,6 +294,7 @@ def main():
         st.plotly_chart(style_fig(fig), use_container_width=True)
 
     section("Priority driver list")
+    shown["driverid"] = shown["driverid"].astype(str)
     search = st.text_input("Search by Driver ID", placeholder="e.g. DRV...")
     roster = filtered.copy()
     if search:
