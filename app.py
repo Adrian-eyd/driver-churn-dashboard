@@ -320,7 +320,7 @@ def main():
     )
 
     st.markdown("---")
-    st.markdown(f'<p class="small-note">Portfolio project · Driver Churn Analytics · Last refreshed {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>', unsafe_allow_html=True)
+    st.markdown(f'<p class="small-note">project · Driver Churn Analytics · Last refreshed {datetime.now().strftime("%Y-%m-%d %H:%M")}</p>', unsafe_allow_html=True)
 
 
 if __name__ == "__main__":
